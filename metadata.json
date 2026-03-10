@@ -1,0 +1,8 @@
+{
+  "name": "Finale",
+  "description": "A high-end personal finance tracker with OpenAI receipt parsing, distinct income/expense categorizations, advanced statistics, and secure local data persistence.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
