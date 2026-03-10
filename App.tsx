@@ -85,15 +85,11 @@ const SidebarLink = ({ to, icon, label, collapsed }: { to: string, icon: React.R
   return (
     <Link 
       to={to} 
-      className={`
-        flex items-center gap-4 px-4 py-3.5 rounded-2xl font-bold transition-all relative group
-        ${collapsed ? 'justify-center mx-2' : 'mx-2'}
-        ${isActive ? 'bg-indigo-600 text-white shadow-xl shadow-indigo-100 dark:shadow-none' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'}
-      `}
+      className={`flex items-center gap-3.5 px-4 py-3 rounded-[18px] font-semibold transition-all relative group mx-2.5 ${collapsed ? 'justify-center px-3' : ''} ${isActive ? 'bg-gradient-to-r from-indigo-600 to-indigo-500 text-white shadow-lg shadow-indigo-500/20 dark:shadow-indigo-900/30' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60'}`}
     >
-      <div className="w-6 h-6 shrink-0">{icon}</div>
+      <div className="w-5 h-5 shrink-0 flex items-center justify-center">{icon}</div>
       {!collapsed && <span className="text-sm whitespace-nowrap">{label}</span>}
-      {isActive && !collapsed && <div className="absolute right-4 w-1.5 h-1.5 bg-white rounded-full" />}
+      {isActive && !collapsed && <div className="absolute right-3.5 w-2 h-2 bg-white rounded-full" />}
     </Link>
   );
 };
@@ -249,20 +245,20 @@ const App = () => {
           `}
         >
           <div 
-            className="h-20 flex items-center px-6 gap-3 cursor-pointer select-none shrink-0 md:hover:bg-slate-50 dark:md:hover:bg-slate-800 transition-colors"
+            className="h-20 flex items-center px-6 gap-3 cursor-pointer select-none shrink-0 transition-colors"
             onClick={() => showMobileSidebar ? setShowMobileSidebar(false) : setIsSidebarCollapsed(!isSidebarCollapsed)}
           >
-            <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shrink-0">
+            <div className="w-11 h-11 bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-indigo-600/30 shrink-0">
               <ICONS.Logo className="w-6 h-6" />
             </div>
             {!isSidebarCollapsed && (
               <div className="flex flex-col overflow-hidden">
-                <span className="text-lg md:text-xl font-black tracking-tight text-slate-900 dark:text-white whitespace-nowrap">FinTrack <span className="text-indigo-600">Pro</span></span>
+                <span className="text-base font-black tracking-tight text-slate-900 dark:text-white whitespace-nowrap">FinTrack <span className="text-indigo-600">Pro</span></span>
               </div>
             )}
           </div>
 
-          <nav className="flex-1 pt-6 space-y-2 overflow-y-auto scrollbar-hide">
+          <nav className="flex-1 pt-8 px-2 space-y-1.5 overflow-y-auto scrollbar-hide">
             <SidebarLink to="/" icon={<ICONS.Dashboard />} label="Dashboard" collapsed={isSidebarCollapsed} />
             <SidebarLink to="/transactions" icon={<ICONS.Transactions />} label="Transactions" collapsed={isSidebarCollapsed} />
             <SidebarLink to="/statistics" icon={<ICONS.Statistics />} label="Statistics" collapsed={isSidebarCollapsed} />
@@ -270,16 +266,12 @@ const App = () => {
             <SidebarLink to="/settings" icon={<ICONS.Settings />} label="Settings" collapsed={isSidebarCollapsed} />
           </nav>
 
-          <div className="p-4 border-t border-slate-100 dark:border-slate-800 space-y-2 shrink-0">
+          <div className="px-2.5 py-6 border-t border-slate-200 dark:border-slate-800 space-y-1.5 shrink-0">
             <button 
               onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-              className={`
-                w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl font-bold transition-all group
-                ${isSidebarCollapsed ? 'justify-center mx-0' : 'hover:bg-slate-50 dark:hover:bg-slate-800'}
-                text-slate-500 dark:text-slate-400
-              `}
+              className={`w-full flex items-center gap-3.5 px-4 py-2.5 rounded-[16px] font-semibold transition-all ${isSidebarCollapsed ? 'justify-center' : 'hover:bg-slate-100 dark:hover:bg-slate-800/60'} text-slate-600 dark:text-slate-300`}
             >
-              <div className="w-6 h-6 flex-shrink-0">
+              <div className="w-5 h-5 flex-shrink-0">
                 {theme === 'light' ? <ICONS.Moon className="w-full h-full" /> : <ICONS.Sun className="w-full h-full" />}
               </div>
               {!isSidebarCollapsed && <span className="text-sm">Switch to {theme === 'light' ? 'dark' : 'light'}</span>}
@@ -287,13 +279,9 @@ const App = () => {
 
             <button 
               onClick={handleLogout}
-              className={`
-                w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl font-bold transition-all group
-                ${isSidebarCollapsed ? 'justify-center mx-0' : 'hover:bg-rose-50 dark:hover:bg-rose-900/20'}
-                text-rose-500
-              `}
+              className={`w-full flex items-center gap-3.5 px-4 py-2.5 rounded-[16px] font-semibold transition-all ${isSidebarCollapsed ? 'justify-center' : 'hover:bg-rose-50 dark:hover:bg-rose-900/20'} text-rose-500`}
             >
-              <div className="w-6 h-6 flex-shrink-0">
+              <div className="w-5 h-5 flex-shrink-0">
                 <ICONS.Logout className="w-full h-full" />
               </div>
               {!isSidebarCollapsed && <span className="text-sm">Sign out</span>}
