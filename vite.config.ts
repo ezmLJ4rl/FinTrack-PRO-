@@ -18,6 +18,7 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
-      }
+      },
+      base: process.env.VITE_BASE_PATH || '/FinTrack-PRO-',
     };
 });
