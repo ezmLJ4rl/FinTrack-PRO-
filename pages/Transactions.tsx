@@ -536,28 +536,28 @@ const TransactionsPage: React.FC<TransactionsPageProps> = ({ transactions, categ
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/20 backdrop-blur-md animate-in fade-in duration-300">
-          <div className="bg-white dark:bg-slate-900 w-full max-w-md rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-slate-100 dark:border-slate-800 overflow-hidden animate-in zoom-in duration-200">
-            <div className="px-8 pt-8">
-              <div className="flex p-1 bg-slate-50 dark:bg-slate-950 rounded-[20px] shadow-inner">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/20 backdrop-blur-md animate-in fade-in duration-300">
+          <div className="bg-white dark:bg-slate-900 w-full max-w-sm sm:max-w-md rounded-[20px] sm:rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-slate-100 dark:border-slate-800 overflow-hidden animate-in zoom-in duration-200">
+            <div className="px-4 sm:px-8 pt-4 sm:pt-8">
+              <div className="flex p-1 bg-slate-50 dark:bg-slate-950 rounded-[16px] sm:rounded-[20px] shadow-inner">
                 <button 
                   type="button" 
                   onClick={() => { setFormData({...formData, type: TransactionType.EXPENSE}); setFormError(null); }} 
-                  className={`flex-1 py-3 text-sm font-semibold rounded-[16px] transition-all duration-300 ${formData.type === TransactionType.EXPENSE ? 'bg-white dark:bg-slate-800 text-rose-500 shadow-[0_4px_12px_rgba(0,0,0,0.05)]' : 'text-slate-400 hover:text-slate-600'}`}
+                  className={`flex-1 py-2 sm:py-3 text-xs sm:text-sm font-semibold rounded-[12px] sm:rounded-[16px] transition-all duration-300 ${formData.type === TransactionType.EXPENSE ? 'bg-white dark:bg-slate-800 text-rose-500 shadow-[0_4px_12px_rgba(0,0,0,0.05)]' : 'text-slate-400 hover:text-slate-600'}`}
                 >
                   Expense
                 </button>
                 <button 
                   type="button" 
                   onClick={() => { setFormData({...formData, type: TransactionType.INCOME}); setFormError(null); }} 
-                  className={`flex-1 py-3 text-sm font-semibold rounded-[16px] transition-all duration-300 ${formData.type === TransactionType.INCOME ? 'bg-white dark:bg-slate-800 text-emerald-500 shadow-[0_4px_12px_rgba(0,0,0,0.05)]' : 'text-slate-400 hover:text-slate-600'}`}
+                  className={`flex-1 py-2 sm:py-3 text-xs sm:text-sm font-semibold rounded-[12px] sm:rounded-[16px] transition-all duration-300 ${formData.type === TransactionType.INCOME ? 'bg-white dark:bg-slate-800 text-emerald-500 shadow-[0_4px_12px_rgba(0,0,0,0.05)]' : 'text-slate-400 hover:text-slate-600'}`}
                 >
                   Income
                 </button>
               </div>
             </div>
 
-            <form onSubmit={handleManualSubmit} className="p-8 space-y-8 max-h-[85vh] overflow-y-auto custom-scrollbar">
+            <form onSubmit={handleManualSubmit} className="p-4 sm:p-8 space-y-6 sm:space-y-8 max-h-[85vh] overflow-y-auto custom-scrollbar">
               <div className="space-y-2">
                 <label className="text-[12px] font-medium text-slate-400 ml-1">Amount</label>
                 <div className="relative group">
@@ -678,43 +678,43 @@ const TransactionsPage: React.FC<TransactionsPageProps> = ({ transactions, categ
       )}
 
       {isSmartModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-950/20 backdrop-blur-md animate-in fade-in duration-300">
-          <div className="bg-white dark:bg-slate-900 w-full max-w-lg rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-slate-100 dark:border-slate-800 overflow-hidden animate-in zoom-in duration-300">
-            <div className="px-8 py-5 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50/30 dark:bg-slate-950/30">
-              <h2 className="text-[12px] font-semibold text-slate-500 tracking-widest">{smartStep === 'input' ? 'Intelligence Analysis' : smartStep === 'processing' ? 'Processing...' : 'Review Suggestion'}</h2>
-              <button onClick={() => setIsSmartModalOpen(false)} className="w-8 h-8 flex items-center justify-center text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all text-xl font-light">&times;</button>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/20 backdrop-blur-md animate-in fade-in duration-300">
+          <div className="bg-white dark:bg-slate-900 w-full max-w-2xl rounded-[20px] sm:rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-slate-100 dark:border-slate-800 overflow-hidden animate-in zoom-in duration-300">
+            <div className="px-4 sm:px-8 py-4 sm:py-5 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50/30 dark:bg-slate-950/30">
+              <h2 className="text-[11px] sm:text-[12px] font-semibold text-slate-500 tracking-widest">{smartStep === 'input' ? 'Intelligence Analysis' : smartStep === 'processing' ? 'Processing...' : 'Review Suggestion'}</h2>
+              <button onClick={() => setIsSmartModalOpen(false)} className="w-7 sm:w-8 h-7 sm:h-8 flex items-center justify-center text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all text-lg sm:text-xl font-light">&times;</button>
             </div>
             
             {smartStep === 'input' && (
-              <form onSubmit={handleSmartSubmit} className="p-8 space-y-6">
+              <form onSubmit={handleSmartSubmit} className="p-4 sm:p-8 space-y-4 sm:space-y-6">
                 <div className="relative">
                   <textarea 
                     rows={4} 
                     value={smartInput} 
                     onChange={(e) => setSmartInput(e.target.value)} 
                     placeholder="Describe your transaction... e.g. 'Coffee at Starbucks $5 today'" 
-                    className="w-full bg-slate-50/50 dark:bg-slate-950/50 border border-slate-100 dark:border-slate-800 rounded-2xl p-6 text-sm font-medium focus:ring-2 focus:ring-indigo-500 outline-none resize-none transition-all" 
+                    className="w-full bg-slate-50/50 dark:bg-slate-950/50 border border-slate-100 dark:border-slate-800 rounded-lg sm:rounded-2xl p-3 sm:p-6 text-xs sm:text-sm font-medium focus:ring-2 focus:ring-indigo-500 outline-none resize-none transition-all" 
                   />
-                  <div className="absolute bottom-4 right-4 flex gap-2">
+                  <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 flex gap-2">
                     <input type="file" ref={fileInputRef} onChange={handleFileUpload} className="hidden" accept="image/*" />
-                    <button type="button" onClick={() => fileInputRef.current?.click()} className="p-3 bg-white dark:bg-slate-800 rounded-xl text-slate-400 hover:text-indigo-600 transition-all shadow-sm active:scale-90"><ICONS.Camera className="w-5 h-5" /></button>
-                    <button type="button" onClick={startVoiceCapture} className={`p-3 rounded-xl transition-all shadow-sm active:scale-90 ${isRecording ? 'bg-rose-100 text-rose-600' : 'bg-white dark:bg-slate-800 text-slate-400 hover:text-indigo-600'}`}><ICONS.Mic className="w-5 h-5" /></button>
+                    <button type="button" onClick={() => fileInputRef.current?.click()} className="p-2 sm:p-3 bg-white dark:bg-slate-800 rounded-lg sm:rounded-xl text-slate-400 hover:text-indigo-600 transition-all shadow-sm active:scale-90"><ICONS.Camera className="w-4 sm:w-5 h-4 sm:h-5" /></button>
+                    <button type="button" onClick={startVoiceCapture} className={`p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all shadow-sm active:scale-90 ${isRecording ? 'bg-rose-100 text-rose-600' : 'bg-white dark:bg-slate-800 text-slate-400 hover:text-indigo-600'}`}><ICONS.Mic className="w-4 sm:w-5 h-4 sm:h-5" /></button>
                   </div>
                 </div>
-                {formError && <div className="p-4 bg-rose-50 dark:bg-rose-900/10 text-rose-600 dark:text-rose-400 rounded-xl text-xs font-semibold border border-rose-100">{formError}</div>}
-                <button type="submit" disabled={isProcessing} className="w-full py-4 bg-indigo-600 text-white rounded-2xl font-semibold text-sm shadow-xl hover:bg-indigo-700 transition-all disabled:opacity-50">Launch Intelligence</button>
+                {formError && <div className="p-3 sm:p-4 bg-rose-50 dark:bg-rose-900/10 text-rose-600 dark:text-rose-400 rounded-lg sm:rounded-xl text-xs font-semibold border border-rose-100">{formError}</div>}
+                <button type="submit" disabled={isProcessing} className="w-full py-3 sm:py-4 bg-indigo-600 text-white rounded-lg sm:rounded-2xl font-semibold text-xs sm:text-sm shadow-xl hover:bg-indigo-700 transition-all disabled:opacity-50">Launch Intelligence</button>
               </form>
             )}
 
             {smartStep === 'processing' && (
-              <div className="p-20 flex flex-col items-center justify-center space-y-6">
-                <div className="w-16 h-16 border-4 border-slate-100 dark:border-slate-800 border-t-indigo-600 rounded-full animate-spin"></div>
-                <p className="font-semibold text-slate-900 dark:text-white tracking-widest text-[10px]">AI Pattern Matching...</p>
+              <div className="p-12 sm:p-20 flex flex-col items-center justify-center space-y-6">
+                <div className="w-14 sm:w-16 h-14 sm:h-16 border-4 border-slate-100 dark:border-slate-800 border-t-indigo-600 rounded-full animate-spin"></div>
+                <p className="font-semibold text-slate-900 dark:text-white tracking-widest text-[9px] sm:text-[10px]">AI Pattern Matching...</p>
               </div>
             )}
 
             {smartStep === 'review' && (
-              <form onSubmit={handleReviewSubmit} className="p-8 space-y-6 max-h-[75vh] overflow-y-auto custom-scrollbar">
+              <form onSubmit={handleReviewSubmit} className="p-4 sm:p-8 space-y-4 sm:space-y-6 max-h-[75vh] overflow-y-auto custom-scrollbar">
                 {reviewData.receiptImage && (
                   <div className="flex justify-center">
                     <img src={reviewData.receiptImage} className="w-32 h-32 object-cover rounded-2xl shadow-lg border-2 border-slate-100" alt="Scanned Receipt" />

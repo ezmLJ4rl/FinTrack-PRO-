@@ -225,27 +225,39 @@ const App = () => {
 
   const currency = SUPPORTED_CURRENCIES.find(c => c.code === currentUser.currencyCode) || SUPPORTED_CURRENCIES[0];
 
+  const [showMobileSidebar, setShowMobileSidebar] = useState(false);
+
   return (
     <Router>
       <div className="flex h-screen bg-white dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 overflow-hidden">
+        
+        {/* Mobile Sidebar Overlay */}
+        {showMobileSidebar && (
+          <div 
+            className="fixed inset-0 bg-black/50 z-30 md:hidden"
+            onClick={() => setShowMobileSidebar(false)}
+          />
+        )}
         
         <aside 
           className={`
             bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 
             flex flex-col shrink-0 transition-all duration-300 ease-in-out z-40
-            ${isSidebarCollapsed ? 'w-[88px]' : 'w-[280px]'}
+            fixed md:relative inset-y-0 left-0 h-screen md:h-auto
+            ${showMobileSidebar ? 'w-[280px]' : isSidebarCollapsed ? 'w-[88px]' : 'w-[280px]'}
+            ${showMobileSidebar ? '' : '-translate-x-full md:translate-x-0'}
           `}
         >
           <div 
-            className="h-20 flex items-center px-6 gap-3 cursor-pointer select-none shrink-0"
-            onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+            className="h-20 flex items-center px-6 gap-3 cursor-pointer select-none shrink-0 md:hover:bg-slate-50 dark:md:hover:bg-slate-800 transition-colors"
+            onClick={() => showMobileSidebar ? setShowMobileSidebar(false) : setIsSidebarCollapsed(!isSidebarCollapsed)}
           >
             <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shrink-0">
               <ICONS.Logo className="w-6 h-6" />
             </div>
             {!isSidebarCollapsed && (
               <div className="flex flex-col overflow-hidden">
-                <span className="text-xl font-black tracking-tight text-slate-900 dark:text-white whitespace-nowrap">FinTrack <span className="text-indigo-600">Pro</span></span>
+                <span className="text-lg md:text-xl font-black tracking-tight text-slate-900 dark:text-white whitespace-nowrap">FinTrack <span className="text-indigo-600">Pro</span></span>
               </div>
             )}
           </div>
@@ -290,17 +302,24 @@ const App = () => {
         </aside>
 
         <main className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
-          <header className="h-20 px-8 flex items-center justify-between shrink-0">
-            <div />
+          <header className="h-16 md:h-20 px-4 md:px-8 flex items-center justify-between shrink-0 gap-4">
+            <button
+              onClick={() => setShowMobileSidebar(!showMobileSidebar)}
+              className="md:hidden flex items-center justify-center w-10 h-10 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+              aria-label="Toggle menu"
+            >
+              <ICONS.Menu className="w-6 h-6" />
+            </button>
+            <div className="hidden md:block flex-1" />
             <Link 
               to="/settings" 
-              className="flex items-center gap-4 hover:bg-slate-50 dark:hover:bg-slate-900 p-2 rounded-2xl transition-all"
+              className="flex items-center gap-2 md:gap-4 hover:bg-slate-50 dark:hover:bg-slate-900 p-2 rounded-2xl transition-all"
             >
               <div className="text-right hidden sm:block">
-                <div className="text-sm font-bold text-slate-900 dark:text-white leading-none mb-1">{currentUser.name}</div>
-                <div className="text-[10px] font-medium text-slate-400">{currentUser.email}</div>
+                <div className="text-xs md:text-sm font-bold text-slate-900 dark:text-white leading-none mb-0.5 md:mb-1 truncate max-w-[100px]">{currentUser.name}</div>
+                <div className="text-[9px] md:text-[10px] font-medium text-slate-400 truncate max-w-[100px]">{currentUser.email}</div>
               </div>
-              <div className="w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-bold border border-indigo-200 dark:border-indigo-800 shadow-sm overflow-hidden">
+              <div className="w-9 md:w-10 h-9 md:h-10 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-bold border border-indigo-200 dark:border-indigo-800 shadow-sm overflow-hidden flex-shrink-0">
                 {currentUser.profileImage ? (
                   <img src={currentUser.profileImage} className="w-full h-full object-cover" alt="Profile" />
                 ) : (
@@ -310,7 +329,7 @@ const App = () => {
             </Link>
           </header>
           
-          <div className="flex-1 overflow-y-auto p-8 custom-scrollbar">
+          <div className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar">
             <Routes>
               <Route path="/" element={<Dashboard transactions={financeState.transactions} categories={financeState.categories} currency={currency} onAdd={handleAddTransaction} />} />
               <Route path="/transactions" element={<TransactionsPage transactions={financeState.transactions} categories={financeState.categories} currency={currency} onAdd={handleAddTransaction} onEdit={handleUpdateTransaction} onDelete={(id) => dispatch({ type: 'DELETE_TRANSACTION', payload: id })} />} />

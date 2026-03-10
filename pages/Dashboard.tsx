@@ -31,32 +31,34 @@ const Dashboard: React.FC<DashboardProps> = ({ transactions, categories, currenc
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700 font-sans max-w-[1200px] mx-auto">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 px-1">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-6 px-0">
         <div>
-          <h1 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Dashboard</h1>
-          <p className="text-slate-400 dark:text-slate-500 text-sm font-medium mt-0.5">Financial health overview.</p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-slate-900 dark:text-white">Dashboard</h1>
+          <p className="text-slate-400 dark:text-slate-500 text-xs sm:text-sm font-medium mt-0.5">Financial health overview.</p>
         </div>
         
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4">
           <button 
             onClick={() => navigate('/transactions?action=smart')}
-            className="group relative flex items-center gap-2.5 px-6 py-2.5 bg-indigo-600 text-white rounded-[16px] font-bold text-sm shadow-xl shadow-indigo-200/50 dark:shadow-none transition-all active:scale-95 overflow-hidden"
+            className="group relative flex items-center justify-center sm:justify-start gap-2 px-4 sm:px-6 py-2.5 bg-indigo-600 text-white rounded-[12px] sm:rounded-[16px] font-bold text-xs sm:text-sm shadow-xl shadow-indigo-200/50 dark:shadow-none transition-all active:scale-95 overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-            <ICONS.AI className="w-5 h-5 transition-transform group-hover:scale-110" />
-            Smart Entry
+            <ICONS.AI className="w-4 sm:w-5 h-4 sm:h-5 transition-transform group-hover:scale-110 flex-shrink-0" />
+            <span className="hidden sm:inline">Smart Entry</span>
+            <span className="sm:hidden">Smart</span>
           </button>
           <button 
             onClick={() => navigate('/transactions?action=add')}
-            className="group flex items-center gap-2.5 px-6 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-[16px] font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-all active:scale-95 shadow-sm"
+            className="group flex items-center justify-center sm:justify-start gap-2 px-4 sm:px-6 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-[12px] sm:rounded-[16px] font-bold text-xs sm:text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-all active:scale-95 shadow-sm"
           >
-            <ICONS.Plus className="w-5 h-5 text-indigo-600 transition-transform duration-500 group-hover:rotate-180" />
-            Manual Entry
+            <ICONS.Plus className="w-4 sm:w-5 h-4 sm:h-5 text-indigo-600 transition-transform duration-500 group-hover:rotate-180 flex-shrink-0" />
+            <span className="hidden sm:inline">Manual Entry</span>
+            <span className="sm:hidden">Manual</span>
           </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 lg:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
         <MetricCard 
           label="Net Balance" 
           value={stats.balance} 
@@ -87,10 +89,10 @@ const Dashboard: React.FC<DashboardProps> = ({ transactions, categories, currenc
         />
       </div>
 
-      <div className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden mt-4">
-        <div className="px-6 py-5 border-b border-slate-50 dark:border-slate-800 flex items-center justify-between">
-          <h2 className="text-base font-bold text-slate-900 dark:text-white">Recent History</h2>
-          <button onClick={() => navigate('/transactions')} className="text-[10px] font-black tracking-widest text-indigo-600 hover:text-indigo-700 transition-colors">Audit All</button>
+      <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[20px] md:rounded-[24px] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden mt-4">
+        <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-slate-50 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <h2 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Recent History</h2>
+          <button onClick={() => navigate('/transactions')} className="text-[9px] sm:text-[10px] font-black tracking-widest text-indigo-600 hover:text-indigo-700 transition-colors text-left sm:text-right">Audit All</button>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-left">
