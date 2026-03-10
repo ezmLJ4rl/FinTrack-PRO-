@@ -240,8 +240,7 @@ const App = () => {
             bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 
             flex flex-col shrink-0 transition-all duration-300 ease-in-out z-40
             fixed md:relative inset-y-0 left-0 h-screen md:h-auto
-            ${showMobileSidebar ? 'w-[280px]' : isSidebarCollapsed ? 'w-[88px]' : 'w-[280px]'}
-            ${showMobileSidebar ? '' : '-translate-x-full md:translate-x-0'}
+            ${showMobileSidebar ? 'w-[280px] translate-x-0' : isSidebarCollapsed ? 'w-[88px] -translate-x-full md:translate-x-0' : 'w-[280px] -translate-x-full md:translate-x-0'}
           `}
         >
           <div 
